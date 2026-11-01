@@ -1,10 +1,10 @@
 import { BigPlayButton } from "components/BigPlayButton/BigPlayButton";
 import { Center } from "components/Center/Center";
 import { generateGameMetadata } from "utils/generateGameMetadata";
-import { MarkdownImage } from "components/Markdown/Image";
+import { MarkdownVideo } from "components/Markdown/Video";
+import { GameJsonLd } from "components/JsonLd/JsonLd";
 
 import image from "assets/projects/inside-the-pistol-guild.png";
-import imageGif from "assets/projects/inside-the-pistol-guild.gif";
 
 export const pageMetadata = {
   id: "inside-the-pistol-guild",
@@ -18,11 +18,19 @@ export async function generateMetadata(_params, parent) {
   return generateGameMetadata(pageMetadata, parent);
 }
 
+<GameJsonLd metadata={pageMetadata} />
+
 # Inside the pistol guild
 
 Perform a pest control for these wizards' pistol
 
-<MarkdownImage src={imageGif.src} alt="" />
+<MarkdownVideo
+  src="/videos/inside-the-pistol-guild.mp4"
+  poster={image.src}
+  width={image.width}
+  height={image.height}
+  aria-label={`${pageMetadata.name} gameplay clip`}
+/>
 
 <Center>
   <BigPlayButton playNowUrl={pageMetadata.playNowUrl} />

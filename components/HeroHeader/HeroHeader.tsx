@@ -18,20 +18,31 @@ interface HeroHeaderProps {
 }
 
 export const HeroHeader = ({ showBear = false }: HeroHeaderProps) => {
-  const urlNoLogo = showBear ? bannerBearNoLogo.src : bannerNoBearNoLogo.src;
-  const urlLogo = bannerLogo.src;
+  const banner = showBear ? bannerBearNoLogo : bannerNoBearNoLogo;
 
   return (
     <Container $showBear={showBear}>
-      <ImgLogoContainer>
+      {/* The logo is the page's h1 on the home page; project pages have their own. */}
+      <ImgLogoContainer as={showBear ? "h1" : "div"}>
         <Link href="/" passHref legacyBehavior>
           <ImgLinkLogo>
-            <ImgLogo src={urlLogo} />
+            <ImgLogo
+              src={bannerLogo.src}
+              width={bannerLogo.width}
+              height={bannerLogo.height}
+              alt="Bodging Bear"
+            />
           </ImgLinkLogo>
         </Link>
       </ImgLogoContainer>
       <ImageOverflowContainer $showBear={showBear}>
-        <ImgNoLogo src={urlNoLogo} $showBear={showBear} />
+        <ImgNoLogo
+          src={banner.src}
+          width={banner.width}
+          height={banner.height}
+          alt=""
+          $showBear={showBear}
+        />
       </ImageOverflowContainer>
     </Container>
   );

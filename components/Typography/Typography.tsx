@@ -7,6 +7,7 @@ import {
   H2Styles,
   H3Styles,
   H4Styles,
+  SectionTitleStyles,
 } from "./Typography.styled";
 import React, { ReactNode } from "react";
 
@@ -18,6 +19,10 @@ export const Paragraph = ({ asChild, ...props }: ParagraphProps) => (
 type H1Props = React.ComponentProps<typeof H1Styles> & { asChild?: boolean };
 export const H1 = ({ asChild, ...props }: H1Props) => (
   <H1Styles {...props} as={asChild ? Slot : "h1"} />
+);
+type SectionTitleProps = React.ComponentProps<typeof SectionTitleStyles>;
+export const SectionTitle = (props: SectionTitleProps) => (
+  <SectionTitleStyles {...props} as="h2" />
 );
 type H2Props = React.ComponentProps<typeof H1Styles> & { asChild?: boolean };
 export const H2 = ({ asChild, ...props }: H2Props) => (

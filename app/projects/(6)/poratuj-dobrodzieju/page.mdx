@@ -1,6 +1,7 @@
 import { BigPlayButton } from "components/BigPlayButton/BigPlayButton";
 import { Center } from "components/Center/Center";
 import { MarkdownImage } from "components/Markdown/Image";
+import { GameJsonLd } from "components/JsonLd/JsonLd";
 import { generateGameMetadata } from "utils/generateGameMetadata";
 
 import image from "assets/projects/poratuj-dobrodzieju.png";
@@ -9,8 +10,7 @@ export const pageMetadata = {
   id: "poratuj-dobrodzieju",
   name: "Poratuj Dobrodzieju!",
   description: "Bring back shopping carts and fight the authorities at night.",
-  image:
-    "https://raw.githubusercontent.com/bodgingbear/poratuj-dobrodzieju/master/website/screenshot.png",
+  image: image.src,
   playNowUrl: "/projects/poratuj-dobrodzieju/play/",
 };
 
@@ -18,11 +18,18 @@ export async function generateMetadata(_params, parent) {
   return generateGameMetadata(pageMetadata, parent);
 }
 
+<GameJsonLd metadata={pageMetadata} />
+
 # Poratuj Dobrodzieju
 
 Collect shopping carts and fight the authorities at night.
 
-<MarkdownImage src={image.src} alt="" />
+<MarkdownImage
+  src={image.src}
+  width={image.width}
+  height={image.height}
+  alt={`${pageMetadata.name} gameplay screenshot`}
+/>
 
 <Center>
   <BigPlayButton playNowUrl={pageMetadata.playNowUrl} />

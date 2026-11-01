@@ -2,6 +2,7 @@ import { BigPlayButton } from "components/BigPlayButton/BigPlayButton";
 import { Center } from "components/Center/Center";
 import { generateGameMetadata } from "utils/generateGameMetadata";
 import { MarkdownImage } from "components/Markdown/Image";
+import { GameJsonLd } from "components/JsonLd/JsonLd";
 
 import image from "assets/projects/sybirfunk.png";
 
@@ -17,11 +18,18 @@ export async function generateMetadata(_params, parent) {
   return generateGameMetadata(pageMetadata, parent);
 }
 
+<GameJsonLd metadata={pageMetadata} />
+
 # Sybirfunk 1943
 
 Stop funked up gulag prisoners from escaping
 
-<MarkdownImage src={image.src} alt="" />
+<MarkdownImage
+  src={image.src}
+  width={image.width}
+  height={image.height}
+  alt={`${pageMetadata.name} gameplay screenshot`}
+/>
 
 <Center>
   <BigPlayButton playNowUrl={pageMetadata.playNowUrl} />

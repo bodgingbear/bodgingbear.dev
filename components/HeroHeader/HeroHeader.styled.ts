@@ -29,6 +29,7 @@ export const ImgNoLogo = styled.img.attrs({ draggable: false })<ShowBearProps>`
   height: ${(props) => (props.$showBear ? "50rem" : "40rem")};
   top: 0;
   left: 50%;
+  width: auto;
   transform: translateX(-50%);
   image-rendering: pixelated;
   z-index: -1;
@@ -50,6 +51,9 @@ export const ImgLogoContainer = styled.div`
   top: 0;
   padding: 0 2rem;
   box-sizing: border-box;
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
 
   @media (min-width: ${breakpoints.tablet}) {
     height: 12.5rem;
@@ -72,6 +76,7 @@ export const ImgLinkLogo = styled.a`
 
 export const ImgLogo = styled.img.attrs({ draggable: false })`
   width: 100%;
+  height: auto;
   image-rendering: pixelated;
   user-select: none;
 `;

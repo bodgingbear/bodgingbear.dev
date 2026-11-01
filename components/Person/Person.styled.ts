@@ -4,6 +4,7 @@ import { white } from "constants/variables";
 
 export const Image = styled.img.attrs({ draggable: false })`
   width: 100%;
+  aspect-ratio: 1 / 1;
   image-rendering: pixelated;
   user-select: none;
 `;

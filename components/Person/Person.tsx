@@ -13,7 +13,7 @@ export const Person = ({ image, name, position, url }: PersonProps) => (
     target={url != null ? "_blank" : undefined}
   >
     <ImageWrapper>
-      <Image src={image} alt="" />
+      <Image src={image} alt="" loading="lazy" />
     </ImageWrapper>
     <Paragraph $center>{name}</Paragraph>
     <Paragraph $muted $center $noMargin="top">

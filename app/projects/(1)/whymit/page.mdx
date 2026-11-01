@@ -2,6 +2,7 @@ import { BigPlayButton } from "components/BigPlayButton/BigPlayButton";
 import { Center } from "components/Center/Center";
 import { generateGameMetadata } from "utils/generateGameMetadata";
 import { MarkdownImage } from "components/Markdown/Image";
+import { GameJsonLd } from "components/JsonLd/JsonLd";
 
 import image from "assets/projects/whymit.png";
 
@@ -17,12 +18,19 @@ export async function generateMetadata(_params, parent) {
   return generateGameMetadata(pageMetadata, parent);
 }
 
+<GameJsonLd metadata={pageMetadata} />
+
 # WHYMIT
 
 Two drunk students measure bridge with a friend\
 Original polish title: _Dwóch pijanych studentów mierzy kumplem most_
 
-<MarkdownImage src={image.src} alt="" />
+<MarkdownImage
+  src={image.src}
+  width={image.width}
+  height={image.height}
+  alt={`${pageMetadata.name} gameplay screenshot`}
+/>
 
 <Center>
   <BigPlayButton playNowUrl={pageMetadata.playNowUrl} />

@@ -35,6 +35,13 @@ export const H1Styles = styled(Text)`
   font-size: 3rem;
 `;
 
+// Looks like an h1 but renders an h2, so a page keeps a single h1.
+// Margins are pinned to the h1 defaults because h2 defaults differ.
+export const SectionTitleStyles = styled(H1Styles)`
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+`;
+
 export const H2Styles = styled(Text)`
   font-size: 2.3rem;
   font-weight: 400;

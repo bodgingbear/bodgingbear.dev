@@ -2,11 +2,12 @@ import { BigPlayButton } from "components/BigPlayButton/BigPlayButton";
 import { Center } from "components/Center/Center";
 import { generateGameMetadata } from "utils/generateGameMetadata";
 import { MarkdownImage } from "components/Markdown/Image";
+import { GameJsonLd } from "components/JsonLd/JsonLd";
 
-import image from "assets/projects/Laika-wracaj.png";
+import image from "assets/projects/laika-wracaj.webp";
 
 export const pageMetadata = {
-  id: "Laika-wracaj",
+  id: "laika-wracaj",
   name: "Laika wracaj!",
   description: "Help Laika find her way back home",
   image: image.src,
@@ -18,11 +19,18 @@ export async function generateMetadata(_params, parent) {
   return generateGameMetadata(pageMetadata, parent);
 }
 
+<GameJsonLd metadata={pageMetadata} />
+
 # Laika wracaj!
 
 Help Laika find her way back home
 
-<MarkdownImage src={image.src} alt="" />
+<MarkdownImage
+  src={image.src}
+  width={image.width}
+  height={image.height}
+  alt={`${pageMetadata.name} gameplay screenshot`}
+/>
 
 <Center>
   <BigPlayButton playNowUrl={pageMetadata.playNowUrl} />

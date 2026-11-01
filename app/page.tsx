@@ -1,22 +1,27 @@
-import { cache } from "react";
-import { glob } from "glob";
+import type { Metadata } from "next";
 import { HeroHeader } from "components/HeroHeader/HeroHeader";
 import { Layout } from "components/Layout/Layout";
-import { H1, H2 } from "components/Typography/Typography";
+import { H2, SectionTitle } from "components/Typography/Typography";
 import { Grid } from "components/Grid/Grid";
 import { Game } from "components/Game/Game";
 import { SpaceEvenly } from "components/SpaceEvenly/SpaceEvenly";
 import { Person } from "components/Person/Person";
 import { ContactMeans } from "components/ContactMeans/ContactMeans";
 import { Copyright } from "components/Copyright/Copyright";
+import { SiteJsonLd } from "components/JsonLd/JsonLd";
 
 import { team } from "constants/team";
+import { getProjects } from "utils/getProjects";
 
 import ghIconUrl from "assets/gh.png";
 import emailIconUrl from "assets/email.svg";
 
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
 export default async function HomePage() {
-  const pagesData = await getItems();
+  const pagesData = await getProjects();
   const projects = pagesData.map((page) => ({
     id: page.id,
     name: page.name,
@@ -27,11 +32,12 @@ export default async function HomePage() {
 
   return (
     <>
+      <SiteJsonLd />
       <HeroHeader showBear />
       <Layout>
-        <H1 $uppercase $center>
+        <SectionTitle $uppercase $center>
           Our games
-        </H1>
+        </SectionTitle>
         <Grid $gap="3rem" $colsTemplate="repeat(auto-fit, minmax(18rem, 1fr))">
           {projects.map((project) => (
             <Game
@@ -44,16 +50,17 @@ export default async function HomePage() {
             />
           ))}
         </Grid>
-        <H1 $uppercase $center>
+        <SectionTitle $uppercase $center>
           Our team
-        </H1>
+        </SectionTitle>
         <SpaceEvenly>
           {team.core.map((teamMember) => (
             <Person key={teamMember.name} {...teamMember} />
           ))}
         </SpaceEvenly>
-        <H2 $uppercase $center $muted $noMargin="top">
-          Friends
+        <H2 $uppercase $center $muted $noMargin="top" asChild>
+          {/* Keep the h2's default bottom margin so the switch to h3 doesn't shift layout. */}
+          <h3 style={{ marginBottom: "0.83em" }}>Friends</h3>
         </H2>
         <SpaceEvenly>
           {team.friends.map((teamMember) => (
@@ -65,9 +72,9 @@ export default async function HomePage() {
             />
           ))}
         </SpaceEvenly>
-        <H1 $uppercase $center>
+        <SectionTitle $uppercase $center>
           Contact us
-        </H1>
+        </SectionTitle>
         <Grid $colsTemplate="repeat(auto-fill, minmax(22rem, 1fr))">
           <ContactMeans
             text="team@bodgingbear.dev"
@@ -85,21 +92,3 @@ export default async function HomePage() {
     </>
   );
 }
-
-const getItems = cache(async () => {
-  const pagePaths = await glob(["app/projects/*/*/page.mdx"]);
-
-  const pageMetadatas = pagePaths
-    .sort((a, b) => b.localeCompare(a))
-    .map((pagePath): Promise<GamePageMetadata> => {
-      const path = pagePath.split("/");
-      const order = path.at(-3);
-      const dir = path.at(-2);
-
-      return import(`app/projects/${order}/${dir}/page.mdx`).then(
-        (x) => x.pageMetadata,
-      );
-    });
-
-  return Promise.all(pageMetadatas);
-});

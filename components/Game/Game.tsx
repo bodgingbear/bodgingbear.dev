@@ -20,7 +20,7 @@ export const Game = ({
     <A href={`/projects/${id}`}>
       {image && (
         <ImageWrapper>
-          <Image src={image} alt="" />
+          <Image src={image} alt="" loading="lazy" />
         </ImageWrapper>
       )}
       <Paragraph $center>{name}</Paragraph>
