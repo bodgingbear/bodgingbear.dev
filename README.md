@@ -1,30 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
+# bodgingbear.dev
 
-## Getting Started
+Bodging Bear team website. Next.js static export (`output: "export"`) served by a Cloudflare Worker with static assets.
 
-First, run the development server:
+## Development
 
 ```bash
-npm run dev
-# or
-yarn dev
+pnpm install
+pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deployment
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Deployed to the **Bodging Bear** Cloudflare account as the `bodgingbear-site` Worker on the `bodgingbear.dev` custom domain.
 
-## Learn More
+```bash
+pnpm build
+npx wrangler deploy
+```
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/zeit/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Games are **not** part of this repo. Each game repo deploys its own Worker that owns the route
+`bodgingbear.dev/projects/<id>/play*`, so the game is served at `https://bodgingbear.dev/projects/<id>/play/`.
+To link a game, set `playNowUrl: "/projects/<id>/play/"` in its `app/projects/(n)/<id>/page.mdx`.

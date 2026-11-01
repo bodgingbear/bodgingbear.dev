@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "bodgingbear-site",
+  "account_id": "6fc5b81bd20c4443e29b2d63ecb3adf8",
+  "compatibility_date": "2026-10-01",
+  // Static Next export. Games are separate Workers that own
+  // bodgingbear.dev/projects/<id>/play* routes on the same zone.
+  "assets": {
+    "directory": "out",
+    "not_found_handling": "404-page"
+  },
+  "workers_dev": false,
+  "routes": [{ "pattern": "bodgingbear.dev", "custom_domain": true }]
+}
