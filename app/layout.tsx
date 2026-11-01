@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Press_Start_2P } from "next/font/google";
 import StyledComponentsRegistry from "../components/StyledComponentsRegistry/StyledComponentsRegistry";
 import { GlobalStyles } from "../components/GlobalStyles/GlobalStyles";
+import { Matomo } from "../components/Matomo/Matomo";
 
 export const metadata: Metadata = {
   title: "Bodging Bear",
@@ -26,6 +27,7 @@ export default function RootLayout({
           {children}
           <GlobalStyles />
         </StyledComponentsRegistry>
+        <Matomo />
       </body>
     </html>
   );
