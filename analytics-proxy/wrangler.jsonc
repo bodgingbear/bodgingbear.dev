@@ -1,0 +1,8 @@
+{
+  "name": "bb-analytics-proxy",
+  "account_id": "6fc5b81bd20c4443e29b2d63ecb3adf8",
+  "main": "index.js",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": false,
+  "routes": [{ "pattern": "analytics.bodgingbear.dev", "custom_domain": true }]
+}
